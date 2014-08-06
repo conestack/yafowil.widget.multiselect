@@ -4,8 +4,8 @@ multiselect widget
 Features
 --------
 
-- renders textarea with multiselect css class and provides a multiselect
-  resources.
+Renders textarea with multiselect css class and provides a multiselect
+resources.
 
 Load requirements::
 

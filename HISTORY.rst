@@ -2,6 +2,13 @@
 History
 =======
 
+1.1 (unreleased)
+----------------
+
+- Update to jquery.multi-select 0.9.12.
+  [rnix, 2014-08-06]
+
+
 1.0
 ---
 
