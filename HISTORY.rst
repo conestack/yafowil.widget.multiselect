@@ -2,7 +2,7 @@
 History
 =======
 
-1.1 (unreleased)
+1.1 (2015-01-23)
 ----------------
 
 - Update to jquery.multi-select 0.9.12.
