@@ -1,30 +1,69 @@
-from interlude import interact
-from pprint import pprint
-from yafowil.tests import pxml
-import doctest
-import unittest
+from node.tests import NodeTestCase
+from node.utils import UNSET
+from yafowil.base import ExtractionError
+from yafowil.base import factory
+from yafowil.tests import fxml
+import yafowil.widget.multiselect
+import yafowil.loader
 
 
-optionflags = doctest.NORMALIZE_WHITESPACE | \
-              doctest.ELLIPSIS | \
-              doctest.REPORT_ONLY_FIRST_FAILURE
+class TestMultiselectWidget(NodeTestCase):
 
-TESTFILES = [
-    'widget.rst',
-]
+    def test_edit_renderer(self):
+        # Render widget
+        widget = factory(
+            'multiselect',
+            name='multi',
+            props={
+                'required': True
+            })
+        self.assertEqual(widget(), (
+            '<input id="exists-multi" name="multi-exists" type="hidden" '
+            'value="exists" /><select class="multiselect" id="input-multi" '
+            'multiple="multiple" name="multi" required="required" />'
+        ))
 
+    def test_display_renderer(self):
+        # Display renderer
+        widget = factory(
+            'multiselect',
+            name='multi',
+            value=['foo', 'bar'],
+            props={
+                'vocabulary': [('foo', 'Foo'), ('bar', 'Bar')]
+            },
+            mode='display')
+        self.assertEqual(widget(), (
+            '<ul class="display-multiselect" '
+            'id="display-multi"><li>Foo</li><li>Bar</li></ul>'
+        ))
+        widget = factory('multiselect', 'multi', mode='display')
+        self.assertEqual(widget(),
+            '<div class="display-multiselect" id="display-multi"></div>'
+        )
 
-def test_suite():
-    return unittest.TestSuite([
-        doctest.DocFileSuite(
-            file,
-            optionflags=optionflags,
-            globs={'interact': interact,
-                   'pprint': pprint,
-                   'pxml': pxml},
-        ) for file in TESTFILES
-    ])
+    def test_extraction(self):
+        # Widget extraction
+        widget = factory(
+            'multiselect',
+            name='multi',
+            props={
+                'required': True
+            })
+
+        request = {'multi': []}
+        data = widget.extract(request)
+        self.assertEqual(
+            data.errors,
+            [ExtractionError('Mandatory field was empty')]
+        )
+        self.assertEqual(data.extracted, [])
+
+        request = {'multi': ['1']}
+        data = widget.extract(request)
+        self.assertEqual(data.errors, [])
+        self.assertEqual(data.extracted, ['1'])
 
 
 if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')                 #pragma NO COVER
+    unittest.main()                                          # pragma: no cover
