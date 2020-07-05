@@ -26,6 +26,6 @@ css = [{
 
 @entry_point(order=10)
 def register():
-    from yafowil.widget.multiselect import widget
+    from yafowil.widget.multiselect import widget  # noqa
     factory.register_theme('default', 'yafowil.widget.multiselect',
                            resourcedir, js=js, css=css)

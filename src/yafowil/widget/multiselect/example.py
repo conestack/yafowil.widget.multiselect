@@ -27,6 +27,7 @@ Multiselect Widget using jQuery multiselect plugin.
     })
 """
 
+
 def multiselect():
     part = factory(u'fieldset', name='yafowilwidgetmultiselect')
     vocab = (

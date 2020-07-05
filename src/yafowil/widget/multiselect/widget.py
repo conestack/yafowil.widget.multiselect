@@ -7,15 +7,18 @@ from yafowil.common import select_extractor
 
 factory.register(
     'multiselect',
-    extractors=[select_extractor, generic_required_extractor],
+    extractors=[
+        select_extractor,
+        generic_required_extractor
+    ],
     edit_renderers=[select_edit_renderer],
-    display_renderers=[select_display_renderer])
+    display_renderers=[select_display_renderer]
+)
 
-factory.doc['blueprint']['multiselect'] = \
-"""Add-on blueprint `yafowil.widget.multiselect
+factory.doc['blueprint']['multiselect'] = """\
+Add-on blueprint `yafowil.widget.multiselect
 <http://github.com/bluedynamics/yafowil.widget.multiselect/>`_ .
 """
-
 
 factory.defaults['multiselect.multivalued'] = True
 factory.defaults['multiselect.size'] = None

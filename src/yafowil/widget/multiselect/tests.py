@@ -1,10 +1,9 @@
-from node.utils import UNSET
 from yafowil.base import ExtractionError
 from yafowil.base import factory
 from yafowil.compat import IS_PY2
 from yafowil.tests import YafowilTestCase
-from yafowil.tests import fxml
-import yafowil.loader
+import unittest
+import yafowil.loader  # noqa
 
 
 if not IS_PY2:
@@ -29,7 +28,7 @@ class TestMultiselectWidget(YafowilTestCase):
         self.assertEqual(widget(), (
             '<input id="exists-multi" name="multi-exists" type="hidden" '
             'value="exists" /><select class="multiselect" id="input-multi" '
-            'multiple="multiple" name="multi" required="required" />'
+            'multiple="multiple" name="multi" required="required"> </select>'
         ))
 
     def test_display_renderer(self):
@@ -47,7 +46,8 @@ class TestMultiselectWidget(YafowilTestCase):
             'id="display-multi"><li>Foo</li><li>Bar</li></ul>'
         ))
         widget = factory('multiselect', 'multi', mode='display')
-        self.assertEqual(widget(),
+        self.assertEqual(
+            widget(),
             '<div class="display-multiselect" id="display-multi"></div>'
         )
 
@@ -75,4 +75,4 @@ class TestMultiselectWidget(YafowilTestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()                                          # pragma: no cover
+    unittest.main()
