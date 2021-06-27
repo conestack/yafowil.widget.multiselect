@@ -17,7 +17,7 @@ factory.register(
 
 factory.doc['blueprint']['multiselect'] = """\
 Add-on blueprint `yafowil.widget.multiselect
-<http://github.com/bluedynamics/yafowil.widget.multiselect/>`_ .
+<http://github.com/conestack/yafowil.widget.multiselect/>`_ .
 """
 
 factory.defaults['multiselect.multivalued'] = True
