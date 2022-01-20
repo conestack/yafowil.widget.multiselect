@@ -1,42 +1,39 @@
-/*
- * yafowil multiselect widget
- *
- * Optional: bdajax
- */
+(function (exports, $) {
+    'use strict';
 
-if (typeof(window['yafowil']) == "undefined") yafowil = {};
-
-(function($) {
-
-    $(document).ready(function() {
-        // initial binding
-        yafowil.multiselect.binder();
-
-        // add after ajax binding if bdajax present
-        if (typeof(window['bdajax']) != "undefined") {
-            $.extend(bdajax.binders, {
-                multiselect_binder: yafowil.multiselect.binder
+    class MultiselectWidget {
+        static initialize(context) {
+            $('select.multiselect', context).each(function() {
+                new MultiselectWidget($(this));
             });
         }
-    });
+        constructor(elem) {
+            this.elem = elem;
+            this.elem.multiSelect();
+        }
+    }
 
-    $.extend(yafowil, {
-
-        multiselect: {
-
-            binder: function(context) {
-
-                $('select.multiselect', context).each(function(event) {
-
-                    var id = $(this).attr('id');
-                    var element = $('#' + id);
-                    element.multiSelect();
-
-                });
-
-            }
+    $(function() {
+        if (window.ts !== undefined) {
+            ts.ajax.register(MultiselectWidget.initialize, true);
+        } else {
+            MultiselectWidget.initialize();
         }
     });
 
+    exports.MultiselectWidget = MultiselectWidget;
 
-})(jQuery);
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+
+    if (window.yafowil === undefined) {
+        window.yafowil = {};
+    }
+
+    window.yafowil.multiselect = exports;
+
+
+    return exports;
+
+})({}, jQuery);
+//# sourceMappingURL=widget.js.map

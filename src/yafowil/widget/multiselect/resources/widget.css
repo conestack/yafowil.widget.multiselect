@@ -2,3 +2,9 @@ iframe.multiselect-sandbox {
     width:100% !important;
     height:30em !important;
 }
+
+
+.ms-container .ms-selectable li.ms-hover, .ms-container .ms-selection li.ms-hover {
+    background-color: #b1dbfb;
+    color: black;
+}

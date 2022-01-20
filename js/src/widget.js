@@ -1,42 +1,14 @@
-/*
- * yafowil multiselect widget
- *
- * Optional: bdajax
- */
+import $ from 'jquery';
 
-if (typeof(window['yafowil']) == "undefined") yafowil = {};
+export class MultiselectWidget {
+    static initialize(context) {
+        $('select.multiselect', context).each(function() {
+            new MultiselectWidget($(this));
+        });
+    }
 
-(function($) {
-
-    $(document).ready(function() {
-        // initial binding
-        yafowil.multiselect.binder();
-
-        // add after ajax binding if bdajax present
-        if (typeof(window['bdajax']) != "undefined") {
-            $.extend(bdajax.binders, {
-                multiselect_binder: yafowil.multiselect.binder
-            });
-        }
-    });
-
-    $.extend(yafowil, {
-
-        multiselect: {
-
-            binder: function(context) {
-
-                $('select.multiselect', context).each(function(event) {
-
-                    var id = $(this).attr('id');
-                    var element = $('#' + id);
-                    element.multiSelect();
-
-                });
-
-            }
-        }
-    });
-
-
-})(jQuery);
+    constructor(elem) {
+        this.elem = elem;
+        this.elem.multiSelect();
+    }
+}
