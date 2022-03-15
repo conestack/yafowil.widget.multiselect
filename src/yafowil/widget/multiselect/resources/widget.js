@@ -1,4 +1,4 @@
-(function (exports, $) {
+var yafowil_multiselect = (function (exports, $) {
     'use strict';
 
     class MultiselectWidget {
@@ -36,4 +36,3 @@
     return exports;
 
 })({}, jQuery);
-//# sourceMappingURL=widget.js.map
