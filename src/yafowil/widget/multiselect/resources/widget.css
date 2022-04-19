@@ -5,6 +5,6 @@ iframe.multiselect-sandbox {
 
 
 .ms-container .ms-selectable li.ms-hover, .ms-container .ms-selection li.ms-hover {
-    background-color: #b1dbfb;
-    color: black;
+    background-color: var(--yafowil-accent-color, #b1dbfb);
+    color: var(--yafowil-accent-font-color, #000);
 }
