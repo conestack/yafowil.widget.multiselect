@@ -1,6 +1,8 @@
 // chromium binary
 process.env.CHROME_BIN = '/usr/bin/chromium';
 
+const RESOURCE_DIR = '../../src/yafowil/widget/multiselect/resources';
+
 // karma config
 module.exports = function(config) {
     config.set({
@@ -19,6 +21,10 @@ module.exports = function(config) {
         }, {
             pattern: '../tests/test_*.js',
             type: 'module'
+        }, {
+            pattern: `${RESOURCE_DIR}/multi-select/js/jquery.multi-select.js`,
+            type: 'module',
+            included: true
         }],
         browsers: [
             'ChromeHeadless'
