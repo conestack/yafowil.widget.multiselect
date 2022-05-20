@@ -7,6 +7,8 @@ export * from './widget.js';
 $(function() {
     if (window.ts !== undefined) {
         ts.ajax.register(MultiselectWidget.initialize, true);
+    } else if (window.bdajax !== undefined) {
+        bdajax.register(MultiselectWidget.initialize, true);
     } else {
         MultiselectWidget.initialize();
     }
