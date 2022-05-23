@@ -8,6 +8,7 @@ var yafowil_multiselect = (function (exports, $) {
             });
         }
         constructor(elem) {
+            elem.data('yafowil-multiselect', this);
             this.elem = elem;
             this.elem.multiSelect();
         }
@@ -16,6 +17,8 @@ var yafowil_multiselect = (function (exports, $) {
     $(function() {
         if (window.ts !== undefined) {
             ts.ajax.register(MultiselectWidget.initialize, true);
+        } else if (window.bdajax !== undefined) {
+            bdajax.register(MultiselectWidget.initialize, true);
         } else {
             MultiselectWidget.initialize();
         }
@@ -26,10 +29,7 @@ var yafowil_multiselect = (function (exports, $) {
     Object.defineProperty(exports, '__esModule', { value: true });
 
 
-    if (window.yafowil === undefined) {
-        window.yafowil = {};
-    }
-
+    window.yafowil = window.yafowil || {};
     window.yafowil.multiselect = exports;
 
 
