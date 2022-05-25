@@ -13,7 +13,10 @@ resources_dir = os.path.join(os.path.dirname(__file__), 'resources')
 
 # webresource ################################################################
 
-scripts = wr.ResourceGroup(name='yafowil-multiselect-scripts')
+scripts = wr.ResourceGroup(
+    name='yafowil-multiselect-scripts',
+    path='yafowil.widget.multiselect'
+)
 scripts.add(wr.ScriptResource(
     name='multiselect-js',
     depends='jquery-js',
@@ -28,7 +31,10 @@ scripts.add(wr.ScriptResource(
     compressed='widget.min.js'
 ))
 
-styles = wr.ResourceGroup(name='yafowil-multiselect-styles')
+styles = wr.ResourceGroup(
+    name='yafowil-multiselect-styles',
+    path='yafowil.widget.multiselect'
+)
 styles.add(wr.StyleResource(
     name='multiselect-css',
     directory=os.path.join(resources_dir, 'multi-select', 'css'),
