@@ -13,7 +13,7 @@ resources_dir = os.path.join(os.path.dirname(__file__), 'resources')
 
 # webresource ################################################################
 
-scripts = wr.ResourceGroup(name='scripts')
+scripts = wr.ResourceGroup(name='yafowil-multiselect-scripts')
 scripts.add(wr.ScriptResource(
     name='multiselect-js',
     depends='jquery-js',
@@ -28,7 +28,7 @@ scripts.add(wr.ScriptResource(
     compressed='widget.min.js'
 ))
 
-styles = wr.ResourceGroup(name='styles')
+styles = wr.ResourceGroup(name='yafowil-multiselect-styles')
 styles.add(wr.StyleResource(
     name='multiselect-css',
     directory=os.path.join(resources_dir, 'multi-select', 'css'),
@@ -40,10 +40,6 @@ styles.add(wr.StyleResource(
     directory=resources_dir,
     resource='widget.css'
 ))
-
-resources = wr.ResourceGroup(name='multiselect-resources')
-resources.add(scripts)
-resources.add(styles)
 
 # B/C resources ##############################################################
 
@@ -78,5 +74,7 @@ def register():
     # Default
     factory.register_theme(
         'default', 'yafowil.widget.multiselect', resources_dir,
-        js=js, css=css, resources=resources
+        js=js, css=css
     )
+    factory.register_scripts('default', 'yafowil.widget.multiselect', scripts)
+    factory.register_styles('default', 'yafowil.widget.multiselect', styles)
