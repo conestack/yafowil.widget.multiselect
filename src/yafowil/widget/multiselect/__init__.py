@@ -13,37 +13,33 @@ resources_dir = os.path.join(os.path.dirname(__file__), 'resources')
 
 # webresource ################################################################
 
-scripts = wr.ResourceGroup(
-    name='yafowil-multiselect-scripts',
-    path='yafowil.widget.multiselect'
+resources = wr.ResourceGroup(
+    name='yafowil-multiselect-resources',
+    directory=resources_dir,
+    path='yafowil-multiselect'
 )
-scripts.add(wr.ScriptResource(
+resources.add(wr.ScriptResource(
     name='multiselect-js',
     depends='jquery-js',
     directory=os.path.join(resources_dir, 'multi-select', 'js'),
+    path='yafowil-multiselect/multi-select/js',
     resource='jquery.multi-select.js'
 ))
-scripts.add(wr.ScriptResource(
+resources.add(wr.ScriptResource(
     name='yafowil-multiselect-js',
     depends='multiselect-js',
-    directory=resources_dir,
     resource='widget.js',
     compressed='widget.min.js'
 ))
-
-styles = wr.ResourceGroup(
-    name='yafowil-multiselect-styles',
-    path='yafowil.widget.multiselect'
-)
-styles.add(wr.StyleResource(
+resources.add(wr.StyleResource(
     name='multiselect-css',
     directory=os.path.join(resources_dir, 'multi-select', 'css'),
+    path='yafowil-multiselect/multi-select/css',
     resource='multi-select.css'
 ))
-styles.add(wr.StyleResource(
+resources.add(wr.StyleResource(
     name='yafowil-multiselect-css',
     depends='multiselect-css',
-    directory=resources_dir,
     resource='widget.css'
 ))
 
@@ -77,10 +73,14 @@ css = [{
 def register():
     from yafowil.widget.multiselect import widget  # noqa
 
+    widget_name = 'yafowil.widget.multiselect'
+
     # Default
     factory.register_theme(
-        'default', 'yafowil.widget.multiselect', resources_dir,
-        js=js, css=css
+        'default',
+        widget_name,
+        resources_dir,
+        js=js,
+        css=css
     )
-    factory.register_scripts('default', 'yafowil.widget.multiselect', scripts)
-    factory.register_styles('default', 'yafowil.widget.multiselect', styles)
+    factory.register_resources('default', widget_name, resources)
