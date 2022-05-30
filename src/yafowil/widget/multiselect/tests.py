@@ -19,7 +19,8 @@ class TestMultiselectWidget(YafowilTestCase):
     def setUp(self):
         super(TestMultiselectWidget, self).setUp()
         from yafowil.widget import multiselect
-        reload(multiselect.widget)
+        from yafowil.widget.multiselect import widget
+        reload(widget)
         multiselect.register()
 
     def test_edit_renderer(self):
