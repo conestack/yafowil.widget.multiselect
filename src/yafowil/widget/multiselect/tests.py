@@ -85,6 +85,7 @@ class TestMultiselectWidget(YafowilTestCase):
         self.assertTrue(
             resources.directory.endswith(np('/multiselect/resources'))
         )
+        self.assertEqual(resources.name, 'yafowil.widget.multiselect')
         self.assertEqual(resources.path, 'yafowil-multiselect')
 
         scripts = resources.scripts

@@ -14,7 +14,7 @@ resources_dir = os.path.join(os.path.dirname(__file__), 'resources')
 # webresource ################################################################
 
 resources = wr.ResourceGroup(
-    name='yafowil-multiselect-resources',
+    name='yafowil.widget.multiselect',
     directory=resources_dir,
     path='yafowil-multiselect'
 )
