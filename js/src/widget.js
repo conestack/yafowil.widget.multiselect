@@ -3,6 +3,9 @@ import $ from 'jquery';
 export class MultiselectWidget {
     static initialize(context) {
         $('select.multiselect', context).each(function() {
+            if ($(this).parents('.arraytemplate').length) {
+                return;
+            }
             new MultiselectWidget($(this));
         });
     }
@@ -19,29 +22,13 @@ export class MultiselectWidget {
 // yafowil.widget.array integration
 //////////////////////////////////////////////////////////////////////////////
 
-function multiselect_on_array_add(inst, context) {
+export function multiselect_on_array_add(inst, context) {
     MultiselectWidget.initialize(context);
 }
 
-function multiselect_on_array_index(inst, row, index) {
-    $('select.multiselect', row).each(function() {
-        let trigger = $(this),
-            ref_name = trigger.data('reference-name'),
-            base_id = inst.base_id(row),
-            base_name = base_id.replace(/\-/g, '.');
-        trigger.data('reference-name', inst.set_value_index(
-            ref_name,
-            base_name,
-            index,
-            '.'
-        ));
-    });
-}
-
-$(function() {
-    if (yafowil_array === undefined) {
+export function register_array_subscribers() {
+    if (window.yafowil_array === undefined) {
         return;
     }
-    yafowil_array.on_array_event('on_add', multiselect_on_array_add);
-    yafowil_array.on_array_event('on_index', multiselect_on_array_index);
-});
+    window.yafowil_array.on_array_event('on_add', multiselect_on_array_add);
+}
