@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
 import {MultiselectWidget} from './widget.js';
+import {register_array_subscribers}  from './widget.js';
 
 export * from './widget.js';
 
@@ -12,4 +13,5 @@ $(function() {
     } else {
         MultiselectWidget.initialize();
     }
+    register_array_subscribers();
 });
