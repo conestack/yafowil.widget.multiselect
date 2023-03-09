@@ -1,42 +1,54 @@
-/*
- * yafowil multiselect widget
- *
- * Optional: bdajax
- */
+var yafowil_multiselect = (function (exports, $) {
+    'use strict';
 
-if (typeof(window['yafowil']) == "undefined") yafowil = {};
-
-(function($) {
-
-    $(document).ready(function() {
-        // initial binding
-        yafowil.multiselect.binder();
-
-        // add after ajax binding if bdajax present
-        if (typeof(window['bdajax']) != "undefined") {
-            $.extend(bdajax.binders, {
-                multiselect_binder: yafowil.multiselect.binder
+    class MultiselectWidget {
+        static initialize(context) {
+            $('select.multiselect', context).each(function() {
+                if (window.yafowil_array !== undefined &&
+                    window.yafowil_array.inside_template($(this))) {
+                    return;
+                }
+                new MultiselectWidget($(this));
             });
         }
-    });
-
-    $.extend(yafowil, {
-
-        multiselect: {
-
-            binder: function(context) {
-
-                $('select.multiselect', context).each(function(event) {
-
-                    var id = $(this).attr('id');
-                    var element = $('#' + id);
-                    element.multiSelect();
-
-                });
-
-            }
+        constructor(elem) {
+            elem.data('yafowil-multiselect', this);
+            this.elem = elem;
+            this.elem.multiSelect();
         }
+    }
+    function multiselect_on_array_add(inst, context) {
+        MultiselectWidget.initialize(context);
+    }
+    function register_array_subscribers() {
+        if (window.yafowil_array === undefined) {
+            return;
+        }
+        window.yafowil_array.on_array_event('on_add', multiselect_on_array_add);
+    }
+
+    $(function() {
+        if (window.ts !== undefined) {
+            ts.ajax.register(MultiselectWidget.initialize, true);
+        } else if (window.bdajax !== undefined) {
+            bdajax.register(MultiselectWidget.initialize, true);
+        } else {
+            MultiselectWidget.initialize();
+        }
+        register_array_subscribers();
     });
 
+    exports.MultiselectWidget = MultiselectWidget;
+    exports.multiselect_on_array_add = multiselect_on_array_add;
+    exports.register_array_subscribers = register_array_subscribers;
 
-})(jQuery);
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+
+    window.yafowil = window.yafowil || {};
+    window.yafowil.multiselect = exports;
+
+
+    return exports;
+
+})({}, jQuery);
