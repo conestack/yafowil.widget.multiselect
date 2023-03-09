@@ -3,7 +3,8 @@ import $ from 'jquery';
 export class MultiselectWidget {
     static initialize(context) {
         $('select.multiselect', context).each(function() {
-            if ($(this).parents('.arraytemplate').length) {
+            if (window.yafowil_array !== undefined &&
+                window.yafowil_array.inside_template($(this))) {
                 return;
             }
             new MultiselectWidget($(this));
