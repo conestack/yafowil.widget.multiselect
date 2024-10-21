@@ -28,6 +28,29 @@ Multiselect Widget using jQuery multiselect plugin.
 """
 
 
+DOC_MULTISELECT_DEPRECATION = """
+.. raw:: html
+
+    <div class="alert alert-info">
+        <i class="bi bi-info-circle-fill"></i>
+        This widget has a newer version available:
+        <a class="link-offset-3"
+           href="../++widget++yafowil.widget.select2/index.html">
+            yafowil.widget.select2
+        </a>
+    </div>
+    <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <strong>Deprecation Notice:</strong>
+        yafowil.widget.multiselect is 
+        <strong>
+            deprecated
+        </strong>
+        and will no longer receive support or further development.
+    </div>
+"""
+
+
 def multiselect():
     part = factory(u'fieldset', name='yafowilwidgetmultiselect')
     vocab = (
@@ -47,7 +70,8 @@ def multiselect():
     })
     return {
         'widget': part,
-        'doc': DOC_MULTISELECT,
+        'doc': DOC_MULTISELECT if factory.theme != 'bootstrap5'
+               else DOC_MULTISELECT_DEPRECATION + DOC_MULTISELECT,
         'title': 'Multiselect Widget',
     }
 
