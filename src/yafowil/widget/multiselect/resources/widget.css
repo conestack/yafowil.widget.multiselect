@@ -1,9 +1,1 @@
-iframe.multiselect-sandbox { 
-    width:100% !important;
-    height:30em !important;
-}
-
-.ms-container .ms-selectable li.ms-hover, .ms-container .ms-selection li.ms-hover {
-    background-color: var(--yafowil-accent-color, #0d6efd);
-    color: var(--yafowil-accent-font-color, #fff);
-}
+iframe.multiselect-sandbox{height:30em!important;width:100%!important}.ms-container .ms-selectable li.ms-hover,.ms-container .ms-selection li.ms-hover{background-color:var(--yafowil-accent-color,#0d6efd);color:var(--yafowil-accent-font-color,#fff)}
