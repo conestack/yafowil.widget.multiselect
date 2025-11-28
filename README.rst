@@ -1,6 +1,6 @@
 This is a multiselect for `yafowil <http://pypi.python.org/pypi/yafowil>`_
 
-It is based on the jQuery `multi-select https://github.com/lou/multi-select`_
+It is based on the jQuery `multi-select <https://github.com/lou/multi-select>`_
 plugin.
 
 - `Documentation <http://docs.yafowil.info/en/latest/blueprints.html#multiselect>`_
