@@ -1,3 +1,19 @@
+.. image:: https://img.shields.io/pypi/v/yafowil.widget.multiselect.svg
+    :target: https://pypi.python.org/pypi/yafowil.widget.multiselect
+    :alt: Latest PyPI version
+
+.. image:: https://img.shields.io/pypi/dm/yafowil.widget.multiselect.svg
+    :target: https://pypi.python.org/pypi/yafowil.widget.multiselect
+    :alt: Number of PyPI downloads
+
+.. image:: https://github.com/conestack/yafowil.widget.multiselect/actions/workflows/test_py.yaml/badge.svg
+    :target: https://github.com/conestack/yafowil.widget.multiselect/actions/workflows/test_py.yaml
+    :alt: Test yafowil.widget.multiselect Python
+
+.. image:: https://github.com/conestack/yafowil.widget.multiselect/actions/workflows/test_js.yaml/badge.svg
+    :target: https://github.com/conestack/yafowil.widget.multiselect/actions/workflows/test_js.yaml
+    :alt: Test yafowil.widget.multiselect JS
+
 This is a multiselect for `yafowil <http://pypi.python.org/pypi/yafowil>`_
 
 It is based on the jQuery `multi-select <https://github.com/lou/multi-select>`_
