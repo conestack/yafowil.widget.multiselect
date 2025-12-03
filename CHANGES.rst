@@ -12,6 +12,13 @@ Changes
   [lenadax]
 
 
+1.4 (2025-11-03)
+----------------
+
+- Pin upper versions of dependencies.
+  [lenadax]
+
+
 1.3 (2018-07-16)
 ----------------
 
