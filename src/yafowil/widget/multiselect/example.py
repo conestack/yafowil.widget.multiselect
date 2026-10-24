@@ -49,31 +49,33 @@ DOC_MULTISELECT_DEPRECATION = """
 
 
 def multiselect():
-    part = factory(u'fieldset', name='yafowilwidgetmultiselect')
+    part = factory('fieldset', name='yafowilwidgetmultiselect')
     vocab = (
-        u'Weißburgunder',
-        u'Welschriesling',
-        u'Sauvingnon Blanc',
-        u'Sämling',
-        u'Scheurebe',
-        u'Traminer',
-        u'Morrilon',
-        u'Muskateller',
+        'Weißburgunder',
+        'Welschriesling',
+        'Sauvingnon Blanc',
+        'Sämling',
+        'Scheurebe',
+        'Traminer',
+        'Morrilon',
+        'Muskateller',
     )
-    part['text'] = factory('#field:multiselect', props={
-        'label': 'Select some items',
-        'required': 'Selection is required',
-        'vocabulary': vocab,
-    })
+    part['text'] = factory(
+        '#field:multiselect',
+        props={
+            'label': 'Select some items',
+            'required': 'Selection is required',
+            'vocabulary': vocab,
+        },
+    )
     return {
         'widget': part,
-        'doc': DOC_MULTISELECT if factory.theme != 'bootstrap5'
-               else DOC_MULTISELECT_DEPRECATION + DOC_MULTISELECT,
+        'doc': DOC_MULTISELECT
+        if factory.theme != 'bootstrap5'
+        else DOC_MULTISELECT_DEPRECATION + DOC_MULTISELECT,
         'title': 'Multiselect Widget',
     }
 
 
 def get_example():
-    return [
-        multiselect()
-    ]
+    return [multiselect()]

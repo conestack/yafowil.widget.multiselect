@@ -7,12 +7,9 @@ from yafowil.common import select_extractor
 
 factory.register(
     'multiselect',
-    extractors=[
-        select_extractor,
-        generic_required_extractor
-    ],
+    extractors=[select_extractor, generic_required_extractor],
     edit_renderers=[select_edit_renderer],
-    display_renderers=[select_display_renderer]
+    display_renderers=[select_display_renderer],
 )
 
 factory.doc['blueprint']['multiselect'] = """\
