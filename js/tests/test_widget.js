@@ -1,4 +1,4 @@
-QUnit.module('Multiselect', hooks => {
+QUnit.module('Multiselect', (hooks) => {
     let MultiselectWidget, register_array_subscribers;
 
     hooks.before(async () => {
@@ -15,53 +15,50 @@ QUnit.module('Multiselect', hooks => {
         register_array_subscribers = modules.register_array_subscribers;
     });
 
-    QUnit.test('initialize', assert => {
-        let el = $('<select />').addClass('multiselect').appendTo('body');
+    QUnit.test('initialize', (assert) => {
+        const el = $('<select />').addClass('multiselect').appendTo('body');
         MultiselectWidget.initialize();
-        let wid = el.data('yafowil-multiselect');
+        const wid = el.data('yafowil-multiselect');
         assert.ok(wid);
         el.remove();
     });
 
-    QUnit.test('register_array_subscribers', assert => {
+    QUnit.test('register_array_subscribers', (assert) => {
         let _array_subscribers = {
-            on_add: []
+            on_add: [],
         };
 
         // window.yafowil_array is undefined - return
         register_array_subscribers();
-        assert.deepEqual(_array_subscribers['on_add'], []);
+        assert.deepEqual(_array_subscribers.on_add, []);
 
         // patch yafowil_array
         window.yafowil_array = {
-            on_array_event: function(evt_name, evt_function) {
+            on_array_event: (evt_name, evt_function) => {
                 _array_subscribers[evt_name] = evt_function;
             },
             inside_template(elem) {
                 return elem.parents('.arraytemplate').length > 0;
-            }
+            },
         };
         register_array_subscribers();
 
         // create table DOM
-        let table = $('<table />')
-            .append($('<tr />'))
-            .append($('<td />'))
-            .appendTo('body');
+        const table = $('<table />').append($('<tr />')).append($('<td />')).appendTo('body');
 
-        let el = $(`<select />`).addClass('multiselect');
+        const el = $(`<select />`).addClass('multiselect');
         $('td', table).addClass('arraytemplate');
         el.appendTo($('td', table));
 
         // invoke array on_add - returns
-        _array_subscribers['on_add'].apply(null, $('tr', table));
+        _array_subscribers.on_add.apply(null, $('tr', table));
         let widget = el.data('yafowil-multiselect');
         assert.notOk(widget);
         $('td', table).removeClass('arraytemplate');
 
         // invoke array on_add
         el.attr('id', '');
-        _array_subscribers['on_add'].apply(null, $('tr', table));
+        _array_subscribers.on_add.apply(null, $('tr', table));
         widget = el.data('yafowil-multiselect');
         assert.ok(widget);
         table.remove();

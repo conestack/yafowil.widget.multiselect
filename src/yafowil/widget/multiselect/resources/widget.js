@@ -3,9 +3,8 @@ var yafowil_multiselect = (function (exports, $) {
 
     class MultiselectWidget {
         static initialize(context) {
-            $('select.multiselect', context).each(function() {
-                if (window.yafowil_array !== undefined &&
-                    window.yafowil_array.inside_template($(this))) {
+            $('select.multiselect', context).each(function () {
+                if (window.yafowil_array?.inside_template($(this))) {
                     return;
                 }
                 new MultiselectWidget($(this));
@@ -17,7 +16,7 @@ var yafowil_multiselect = (function (exports, $) {
             this.elem.multiSelect();
         }
     }
-    function multiselect_on_array_add(inst, context) {
+    function multiselect_on_array_add(_inst, context) {
         MultiselectWidget.initialize(context);
     }
     function register_array_subscribers() {
@@ -27,7 +26,7 @@ var yafowil_multiselect = (function (exports, $) {
         window.yafowil_array.on_array_event('on_add', multiselect_on_array_add);
     }
 
-    $(function() {
+    $(() => {
         if (window.ts !== undefined) {
             ts.ajax.register(MultiselectWidget.initialize, true);
         } else if (window.bdajax !== undefined) {

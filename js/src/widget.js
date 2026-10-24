@@ -2,9 +2,8 @@ import $ from 'jquery';
 
 export class MultiselectWidget {
     static initialize(context) {
-        $('select.multiselect', context).each(function() {
-            if (window.yafowil_array !== undefined &&
-                window.yafowil_array.inside_template($(this))) {
+        $('select.multiselect', context).each(function () {
+            if (window.yafowil_array?.inside_template($(this))) {
                 return;
             }
             new MultiselectWidget($(this));
@@ -18,12 +17,11 @@ export class MultiselectWidget {
     }
 }
 
-
 //////////////////////////////////////////////////////////////////////////////
 // yafowil.widget.array integration
 //////////////////////////////////////////////////////////////////////////////
 
-export function multiselect_on_array_add(inst, context) {
+export function multiselect_on_array_add(_inst, context) {
     MultiselectWidget.initialize(context);
 }
 
