@@ -3,7 +3,6 @@ from yafowil.base import ExtractionError
 from yafowil.base import factory
 from yafowil.tests import YafowilTestCase
 import os
-import unittest
 
 
 def np(path):
@@ -117,7 +116,3 @@ class TestMultiselectWidget(YafowilTestCase):
         self.assertEqual(styles[1].path, 'yafowil-multiselect')
         self.assertEqual(styles[1].file_name, 'widget.css')
         self.assertTrue(os.path.exists(styles[1].file_path))
-
-
-if __name__ == '__main__':
-    unittest.main()
