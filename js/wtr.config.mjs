@@ -2,6 +2,13 @@ import {importMapsPlugin} from '@web/dev-server-import-maps';
 import {playwrightLauncher} from '@web/test-runner-playwright';
 const RESOURCE_DIR = './src/yafowil/widget/multiselect/resources';
 
+export const importMap = {
+    imports: {
+        'jquery': './node_modules/jquery/dist-module/jquery.module.js',
+        'multiselect': `${RESOURCE_DIR}/multi-select/js/jquery.multi-select.js`
+    },
+};
+
 export default {
     nodeResolve: true,
     browsers: [
@@ -22,14 +29,7 @@ export default {
     },
     plugins: [
         importMapsPlugin({
-            inject: {
-                importMap: {
-                    imports: {
-                        'jquery': './node_modules/jquery/dist-module/jquery.module.js',
-                        'multiselect': `${RESOURCE_DIR}/multi-select/js/jquery.multi-select.js`
-                    },
-                },
-            },
+            inject: {importMap},
         }),
     ],
 }
