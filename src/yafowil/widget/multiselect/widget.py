@@ -1,8 +1,8 @@
 from yafowil.base import factory
 from yafowil.common import generic_required_extractor
-from yafowil.common import select_display_renderer
-from yafowil.common import select_edit_renderer
-from yafowil.common import select_extractor
+from yafowil.select import select_display_renderer
+from yafowil.select import select_edit_renderer
+from yafowil.select import select_extractor
 
 
 factory.register(
